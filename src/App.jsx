@@ -1,28 +1,19 @@
+// React
+import React, { Suspense } from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+
+// Css
 import './assets/tailwind.css'
+import AppRoute from './router/Routes'
 
-import DashboardLayout from './layout/Dashboard'
-import axios from 'axios'
-
-const Api = "http://localhost:8080/api/post"
 function App() {
-  
-  axios.get(Api)
-  .then(response => {
-    // Mengakses data yang diterima dari server
-    const data = response.data;
-    console.log(data);
-  })
-  .catch(error => {
-    // Menangani error jika permintaan gagal
-    console.error(error);
-  });
 
   return (
-    <>
-      <div>
-        <DashboardLayout />
-      </div>
-    </>
+    <Router>
+      <Suspense fallback={null}>
+        <AppRoute />
+      </Suspense>
+    </Router>
   )
 
 }
