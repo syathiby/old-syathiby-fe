@@ -1,18 +1,23 @@
 import axios from "axios";
 
-const API_URL = 'http://localhost:8081';
+export const API_URL = 'http://localhost:8080';
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
   headers: {
-    'Authorization': `Bearer your_token_here`
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer your_token_here`,
   }
 });
+
+const axiosBlog = axios.create({
+    baseURL: API_URL
+})
 
 export const get = (endpoint) => {
   const url = `/${endpoint}`;
 
-  return axiosInstance.get(url)
+  return axiosBlog.get(url)
     .then(response => response.data)
     .catch(error => {
       throw new Error(error);
