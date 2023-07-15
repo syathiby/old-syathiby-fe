@@ -2,7 +2,7 @@ function Navbar() {
 
     return(
         <>
-            <div className="navbar bg-white relative z-50 rounded-lg">
+            <div className="navbar relative z-50 rounded-lg">
                 <div className="navbar-start">
                     <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">

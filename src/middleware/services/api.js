@@ -14,6 +14,16 @@ const axiosBlog = axios.create({
     baseURL: API_URL
 })
 
+export const auth = (endpoint, formData) => {
+    const url = `/${endpoint}`;
+  
+    return axiosBlog.post(url, formData)
+      .then(response => response.data)
+      .catch(error => {
+        throw new Error(error);
+      });
+  }
+
 export const get = (endpoint) => {
   const url = `/${endpoint}`;
 
@@ -27,7 +37,7 @@ export const get = (endpoint) => {
 export const post = (endpoint, formData) => {
   const url = `/${endpoint}`;
 
-  return axiosInstance.post(url, data)
+  return axiosInstance.post(url, formData)
     .then(response => response.data)
     .catch(error => {
       throw new Error(error);

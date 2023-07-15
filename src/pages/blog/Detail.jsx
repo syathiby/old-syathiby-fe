@@ -21,13 +21,31 @@ const DetailPost = () => {
     fetchData();
   }, [link]);
 
+  const handleCopy = (event) => {
+    const currentUrl = window.location.href;
+    const attributionText = `\n\n©2023 https://syathiby.id \nInstagram: syathibyid | Facebook: Ma'had Tahfidz Imam Syathiby \nSumber: ${currentUrl}`;
+
+    event.preventDefault();
+    const copiedText = window.getSelection().toString();
+    const modifiedText = copiedText + attributionText;
+    event.clipboardData.setData('text/plain', modifiedText);
+  };
+
+  useEffect(() => {
+    document.addEventListener('copy', handleCopy);
+
+    return () => {
+      document.removeEventListener('copy', handleCopy);
+    };
+  }, []);
+
   if (post === null) {
     return <div>Loading...</div>;
   }
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-4">
+      <div id="article" className="container mx-auto px-4 py-4">
         <div className="max-w-2xl mx-auto relative">
           <img
             className="rounded-lg w-full"
@@ -40,9 +58,9 @@ const DetailPost = () => {
           <h1 className="text-3xl font-bold mt-6">{post.title}</h1>
           <p className="text-gray-600 mt-2">
             Published on {moment(post.created_at).format('DD MMMM YY')}.
-            &nbsp;Author : {post.created_by}
+            &nbsp;Author: {post.created_by}
           </p>
-          <div className="mt-6 prose" dangerouslySetInnerHTML={{ __html: post.description }}></div>
+          <div className="mt-6" dangerouslySetInnerHTML={{ __html: post.description }} />
         </div>
       </div>
     </Layout>

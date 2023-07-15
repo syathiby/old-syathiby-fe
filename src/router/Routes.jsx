@@ -21,6 +21,7 @@ function AppRoute() {
 
                 {/* Private Page for Admin */}
                 <Route path="/admin" element={<PrivateRoutes />}>
+                    <Route path="/admin" element={<AdminLayout />} />
                     <Route path="/admin/dashboard" element={<AdminLayout />} />
                 </Route>
 

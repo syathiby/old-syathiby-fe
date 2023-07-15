@@ -44,7 +44,7 @@ const CarouselComponent = () => {
           ))}
         </div>
 
-        <div className="max-w-sm sm:mx-12 lg:mx-12 lg:order-2">
+        <div className="max-w-xs sm:mx-12 lg:mx-12 lg:order-2">
           <Carousel
             autoPlay
             infiniteLoop
@@ -52,6 +52,7 @@ const CarouselComponent = () => {
             swipeable
             emulateTouch
             showThumbs={false}
+            showArrows={false}
             showStatus={false}
             showIndicators={false}
             selectedItem={activeIndex}
@@ -68,7 +69,7 @@ const CarouselComponent = () => {
           </Carousel>
         </div>
       </div>
-      <div className="flex items-center justify-center w-full h-96 lg:w-1/2">
+      <div className="flex items-center justify-center w-full lg:w-1/2">
         <Carousel
           autoPlay
           infiniteLoop
