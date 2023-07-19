@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { API_URL } from '../../../middleware/services/api';
 import { getNama, getPhoto, getRole, logoutUser } from '../../../middleware/auth/authApi';
-import { CaretUpOutlined, CaretDownOutlined, LogoutOutlined, HomeOutlined, DatabaseOutlined, SettingOutlined } from '@ant-design/icons';
+import { CaretUpOutlined, CaretDownOutlined, LogoutOutlined } from '@ant-design/icons';
 
 import { NavLink, useLocation } from 'react-router-dom';
-import { routes } from '../../../router/RoutesSide';
+import { routes } from '../../../router/routesConfig'
 
 const Sidebar = ({ isOpen }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState({});

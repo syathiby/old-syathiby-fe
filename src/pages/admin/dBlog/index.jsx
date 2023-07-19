@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { API_URL, get } from "../../middleware/services/api";
-import LayoutAdmin from "./layout/layout";
 
-const AdminLayout = () => {
-  
+import { API_URL, get } from "../../../middleware/services/api";
+// Import Layout
+import LayoutAdmin from "../../../layout/adminLayout/layout"
+
+const DBlog = () => {
   const [post, setPost] = useState(null);
 
   useEffect(() => {
@@ -135,4 +136,4 @@ const AdminLayout = () => {
   );
 };
 
-export default AdminLayout;
+export default DBlog;

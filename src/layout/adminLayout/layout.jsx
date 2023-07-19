@@ -1,6 +1,6 @@
 import { useState } from "react"
-import Sidebar from "./Sidebar"
-import Navbar from "./Navbar"
+import Sidebar from "./component/Sidebar"
+import Navbar from "./component/Navbar"
 
 const LayoutAdmin = ({ children }) => {
 
