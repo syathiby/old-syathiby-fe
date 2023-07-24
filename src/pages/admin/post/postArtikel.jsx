@@ -4,6 +4,7 @@ import { get } from "../../../middleware/services/api"
 import { handleArtikel } from "../../../middleware/services/admin/post"
 import ReactQuill from "react-quill"
 import CardDotted from "../../../component/card/cardDotted"
+import { useNavigate } from "react-router-dom"
 
 const formArtikel = {
     title: "",
@@ -18,6 +19,8 @@ const AddPost = () => {
     const [artikel, setArtikel] = useState(formArtikel);
     const [imageFile, setImageFile] = useState(null);
     const [kategori, setKategori] = useState([]);
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -69,6 +72,7 @@ const AddPost = () => {
         handleArtikel(artikel, imageFile, (handleResult) => {
             if (handleResult === "ok") {
                 setArtikel(formArtikel);
+                navigate('/admin/artikel')
             }
         });
     };

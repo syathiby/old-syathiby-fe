@@ -52,8 +52,8 @@ const DetailPost = () => {
             src={`${API_URL}/upload/post/${post.img}`}
             alt={post.title}
           />
-          <div className="absolute top-2 right-2 bg-blue-50 px-2 py-1 rounded-tr-md rounded-bl-md">
-            <p className="text-gray-600 text-xs">{post.label}</p>
+          <div className={`absolute top-2 right-2 ${post.color} px-2 py-1 rounded-tr-md rounded-bl-md`}>
+            <p className="text-black font-bold text-xs">{post.name}</p>
           </div>
           <h1 className="text-3xl font-bold mt-6">{post.title}</h1>
           <p className="text-gray-600 mt-2">

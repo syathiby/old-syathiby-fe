@@ -2,7 +2,9 @@ import {
   HomeOutlined,
   SettingOutlined,
   ReadOutlined,
-  AlignLeftOutlined
+  AlignLeftOutlined,
+  SwitcherOutlined,
+  CameraOutlined
 } from "@ant-design/icons/lib/icons";
 
 // import Pages
@@ -10,6 +12,7 @@ import Artikel from "../pages/admin/post/artikel";
 import DBlog from "../pages/admin/dBlog";
 import Kategori from "../pages/admin/label";
 import AddPost from "../pages/admin/post/postArtikel";
+import FacilityAdmin from "../pages/admin/fasilitas";
 
 export const routes = [
   {
@@ -25,6 +28,12 @@ export const routes = [
     component: <Kategori />
   },
   {
+    name: "Fasilitas Ma'had",
+    path: "/admin/fasilitas",
+    icon: <SwitcherOutlined />,
+    component: <FacilityAdmin />
+  },
+  {
     name: "Post",
     icon: <ReadOutlined />,
     children: [{
@@ -38,6 +47,18 @@ export const routes = [
         component: <AddPost />
       }]
     }]
+  },
+  {
+    name: "Galeri",
+    icon: <CameraOutlined />,
+    children: [
+      {
+        name: "Foto",
+      },
+      {
+        name: "Video"
+      }
+    ]
   },
   {
     name: "Settings",

@@ -10,7 +10,7 @@ function Post() {
     const fetchData = async () => {
       try {
         const response = await get('v1/post');
-        setPosts(response.slice(0, 5));
+        setPosts(response.slice(0, 4));
       } catch (error) {
         console.error('Error Fetching Data', error);
       }
@@ -61,7 +61,7 @@ function Post() {
                 {truncateDescription(postData.description, 80)}
                 {postData.description.length > 80 && (
                   <Link className="font-bold text-blue-500" to={`/post/${postData.link}`}>
-                    Read More
+                    &nbsp; <br/> Read More
                   </Link>
                 )}
               </p>

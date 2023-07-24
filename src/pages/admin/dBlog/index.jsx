@@ -4,17 +4,25 @@ import { Link } from "react-router-dom";
 import { API_URL, get } from "../../../middleware/services/api";
 // Import Layout
 import LayoutAdmin from "../../../layout/adminLayout/layout"
+import CardDotted from "../../../component/card/cardDotted";
 
 const DBlog = () => {
-  const [post, setPost] = useState(null);
+
+  const [data, setData] = useState({
+    post: null,
+    totalPost: null
+  });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await get(`v1/post`);
-        if (response.length > 0) {
-          setPost(response[0]);
-        }
+        const totalCountResponse = await get("v1/admin/post");
+        const latestPostResponse = await get("v1/admin/post", { sort: "-created_at", limit: 1 });
+
+        setData({
+          post: latestPostResponse.length > 0 ? latestPostResponse[0] : null,
+          totalPost: totalCountResponse.length
+        });
       } catch (error) {
         console.error("Error Fetching Data", error);
       }
@@ -23,6 +31,14 @@ const DBlog = () => {
     fetchData();
   }, []);
 
+  const truncateDescription = (description, maxLength) => {
+    const strippedDescription = description.replace(/(<([^>]+)>)/gi, '');
+    if (strippedDescription.length > maxLength) {
+      return strippedDescription.substring(0, maxLength) + '...';
+    }
+    return strippedDescription;
+  };
+  
   const formatCreatedAt = (dateString) => {
     const date = new Date(dateString);
     const options = { year: 'numeric', month: 'long' };
@@ -33,16 +49,17 @@ const DBlog = () => {
     <LayoutAdmin>
        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="grid grid-cols-2 gap-4">
-            <div className="w-full h-full bg-white rounded-md border-2 border-slate-500 px-4 py-2">
+
+           <CardDotted>
               <div className="flex flex-col text-center">
                 <dt className="order-last text-lg font-medium text-gray-500">
                   Total Post
                 </dt>
                 <dd className="text-4xl font-extrabold text-blue-600 md:text-5xl">
-                  4
+                  {data.totalPost}
                 </dd>
               </div>
-            </div>
+           </CardDotted>
 
             <div className="w-full h-full bg-white rounded-md border-2 border-slate-500 px-4 py-2">
               <div className="flex flex-col text-center">
@@ -79,23 +96,23 @@ const DBlog = () => {
 
           </div>
 
-          {post && (
+          {data.post && (
             <div className="max-h-44">
               <article className="flex bg-white transition hover:shadow-xl">
                 <div className="rotate-180 p-2 [writing-mode:_vertical-lr]">
                 <time
-                    dateTime={post.created_at}
+                    dateTime={data.post.created_at}
                     className="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
                   >
-                    <span>{formatCreatedAt(post.created_at)}</span>
+                    <span>{formatCreatedAt(data.post.created_at)}</span>
                     <span className="w-px flex-1 bg-gray-900/10"></span>
-                    <span>{new Date(post.created_at).getDate()}</span>
+                    <span>{new Date(data.post.created_at).getDate()}</span>
                   </time>
                 </div>
                 <div className="hidden sm:block sm:basis-56">
                   <img
                     alt="Guitar"
-                    src={`${API_URL}/upload/post/${post.img}`}
+                    src={`${API_URL}/upload/post/${data.post.img}`}
                     className="aspect-square h-full w-full object-cover"
                   />
                 </div>
@@ -103,15 +120,15 @@ const DBlog = () => {
                   <div className="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
                     <a href="#">
                       <h3 className="font-bold uppercase text-gray-900">
-                        {post.title}
+                        {data.post.title}
                       </h3>
                     </a>
                     <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-700">
-                      {post.description}
+                      {truncateDescription(data.post.description, 80)}
                     </p>
                   </div>
                   <div className="sm:flex sm:items-end sm:justify-end">
-                    <Link className="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400" to={`/post/${post.link}`}>
+                    <Link className="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400" to={`/post/${data.post.link}`}>
                       Read Blog
                     </Link>
                   </div>

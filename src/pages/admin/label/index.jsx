@@ -56,6 +56,7 @@ const Kategori = () => {
 
                 <div className="col-span-2 lg:col-span-1">
                     <CardDotted>
+                        <h1 className="py-4 font-semibold text-center">Add Kategori</h1>
                         <form action="">
                         <div className="my-2 w-full">
                                 <label
