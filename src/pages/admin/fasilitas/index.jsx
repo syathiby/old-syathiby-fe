@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import LayoutAdmin from "../../../layout/adminLayout/layout";
 import CardDotted from "../../../component/card/cardDotted";
-import { get } from "../../../middleware/services/api";
+import { get, remove } from "../../../middleware/services/api";
 import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { handleFasilitas } from "../../../middleware/services/admin/fasilitas";
+import Swal from "sweetalert2";
 
 const formFacility = {
     name: ""
@@ -20,6 +21,34 @@ const FacilityAdmin = () => {
         [name]: value,
       }));
     };
+
+    const handleRemove = async (id) => {
+        try {
+          const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          });
+          if (result.isConfirmed) {
+            await remove(`v1/admin/facility/${id}`);
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'Your Data has been deleted.',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000
+            });
+            fetchData();
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      };
+      
   
     useEffect(() => {
       fetchData();
@@ -95,13 +124,13 @@ const FacilityAdmin = () => {
                         </td>
                         <td className="whitespace-nowrap px-4 py-2 font-normal text-gray-900">
                           <div className="grid grid-cols-3 gap-4">
-                            <a href={`/post/${item.link}`}>
+                            <a href="#">
                               <EyeOutlined style={{ fontSize: "16px" }} />
                             </a>
                             <a href="#">
                               <EditOutlined style={{ fontSize: "16px" }} />
                             </a>
-                            <a href="#">
+                            <a href="#" onClick={() => handleRemove(item.id)}>
                               <DeleteOutlined style={{ fontSize: "16px" }} />
                             </a>
                           </div>
@@ -128,7 +157,7 @@ const FacilityAdmin = () => {
                                     type="text"
                                     id="name"
                                     name="name"
-                                    className="peer border-none px-4 py-3 bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
+                                    className="peer border-none w-full px-4 py-3 bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
                                     placeholder="name"
                                     value={facility.name} onChange={handleInputChange}
                                 />

@@ -1,11 +1,13 @@
+import { API_URL } from "../../../middleware/services/api"
+
 function FooterN() {
 
     return(
         <div className="bg-white dark:bg-gray-900">
             <div className="container px-6 py-8 mx-auto">
                 <div className="flex flex-col items-center text-center">
-                    <a href="#">
-                        <img className="w-auto h-7" src="https://merakiui.com/images/full-logo.svg" alt="Logo" />
+                    <a href="/">
+                        <img className="w-auto h-28" src={`${API_URL}/upload/logo/syathiby.png`} alt="Logo" />
                     </a>
 
                     <div className="flex flex-wrap justify-center mt-6 -mx-4">

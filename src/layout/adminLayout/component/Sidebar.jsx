@@ -48,7 +48,7 @@ const Sidebar = ({ isOpen }) => {
                   <li key={child.name}>
                     <NavLink
                       to={child.path}
-                      className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 group ${
+                      className={`flex items-center p-2 text-gray-900 my-2 rounded-lg dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 group ${
                         location.pathname === child.path ? 'bg-blue-200 dark:bg-gray-700' : ''
                       }`}
                       activeclassname="bg-blue-200 dark:bg-gray-700"

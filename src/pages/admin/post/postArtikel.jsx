@@ -20,6 +20,7 @@ const AddPost = () => {
     const [imageFile, setImageFile] = useState(null);
     const [kategori, setKategori] = useState([]);
 
+    
     const navigate = useNavigate()
 
     useEffect(() => {

@@ -40,8 +40,8 @@ const Navbar = ({ onSidebarToggle }) => {
             </button>
             <a href="/admin" className="flex ml-2 md:mr-24">
               <img
-                src={`${API_URL}/upload/logo/logo.png`}
-                className="h-8 mr-3"
+                src={`${API_URL}/upload/logo/syathiby.png`}
+                className="h-12 mr-3"
                 alt="syathiby-logo"
               />
             </a>

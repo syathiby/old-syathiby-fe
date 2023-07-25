@@ -1,3 +1,5 @@
+import { API_URL } from "../../../middleware/services/api"
+
 function Navbar() {
 
     return(
@@ -20,7 +22,7 @@ function Navbar() {
                         <li><a>Item 3</a></li>
                     </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">Syathiby</a>
+                    <img src={`${API_URL}/upload/logo/syathiby.png`} className="h-16" alt="" />
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
