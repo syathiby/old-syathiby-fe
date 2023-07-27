@@ -8,6 +8,7 @@ import Address from "./component/address";
 
 // import LayOut
 import Layout from "./Layout";
+import VisiMisi from "./component/visiMisi";
 
 function DashboardLayout() {
   return (
@@ -15,6 +16,9 @@ function DashboardLayout() {
       <Layout>
         <div key="carousel">
           <CarouselComponent />
+        </div>
+        <div key="visiMisi">
+          <VisiMisi />
         </div>
         <div key="facility">
           <Facility />

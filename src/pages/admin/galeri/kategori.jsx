@@ -12,8 +12,6 @@ const GaleriKategori = () => {
 
     const [kat, setKat] = useState(formGaleriK)
 
-    console.log(kat)
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setKat((prevKategori) => ({
@@ -32,7 +30,7 @@ const GaleriKategori = () => {
 
     return(
         <LayoutAdmin>
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="col-span-2">
                     <CardDotted>
                             <div className="overflow-x-auto">
@@ -68,7 +66,7 @@ const GaleriKategori = () => {
                                         type="text"
                                         id="nkategori"
                                         name="nkategori"
-                                        className="peer border-none h-14 bg-transparent w-full px-4 py-4 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
+                                        className="peer border-none lowercase h-14 bg-transparent w-full px-4 py-4 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
                                         placeholder="nkategori"
                                         value={kat.nkategori}
                                         onChange={handleInputChange}

@@ -42,7 +42,7 @@ function Post() {
       </div>
       <div className="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-4">
         {posts.map((postData) => (
-          <div key={postData.id}>
+          <div key={postData.link}>
             <img
               className="relative z-10 object-cover w-full rounded-md h-96"
               src={`${API_URL}/upload/Post/${postData.img}`}

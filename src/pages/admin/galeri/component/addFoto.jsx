@@ -84,7 +84,7 @@ const AddFoto = () => {
               <img
                 src={previewImage}
                 alt="Preview"
-                className="w-48 h-48 mx-auto my-4"
+                className="w-96 object-contain h-48 mx-auto my-4"
               />
               <button
                 className="block mx-auto bg-red-500 text-white px-4 py-2 rounded-md mt-4"
@@ -166,7 +166,7 @@ const AddFoto = () => {
                 <select
                     name="kategori"
                     id="color"
-                    className="mt-1.5 w-full rounded-lg px-2 py-2 border-2 border-gray-300 text-gray-700 sm:text-sm"
+                    className="mt-1.5 w-full rounded-lg dark:bg-white px-2 py-2 border-2 border-gray-300 text-gray-700 sm:text-sm"
                     value={foto.kategori}
                     onChange={handleInputChange}
                 >

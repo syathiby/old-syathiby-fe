@@ -75,7 +75,7 @@ const FotoGaleri = () => {
 
                                 <span className="hidden sm:block sm:h-px sm:w-8 sm:bg-yellow-500"></span>
 
-                                <p className="mt-0.5 opacity-50 sm:mt-0">{truncateDescription(item.caption, 12)} <br/> {item.kategori}</p>
+                                <p className="mt-0.5 opacity-50 sm:mt-0">{truncateDescription(item.caption, 12)} <br/> {item.nkategori}</p>
                             </div>
                         </a>
                     </div>

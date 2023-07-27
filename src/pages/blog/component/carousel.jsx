@@ -48,7 +48,7 @@ const CarouselComponent = () => {
           <Carousel
             autoPlay
             infiniteLoop
-            interval={3000}
+            interval={5000}
             swipeable
             emulateTouch
             showThumbs={false}
@@ -59,12 +59,14 @@ const CarouselComponent = () => {
             onChange={setActiveIndex}
           >
             {banner.map((bannerData) => (
-              <div key={bannerData.id}>
-                <h1 className="text-3xl font-semibold tracking-wide text-gray-800 text-left dark:text-white lg:text-4xl">
-                  {bannerData.title}
-                </h1>
-                <p className="mt-4 text-gray-600 text-left dark:text-gray-300">{bannerData.caption}</p>
-              </div>
+              <a key={bannerData.link} href={bannerData.link}>
+                <div key={bannerData.id}>
+                    <h1 className="text-3xl font-semibold tracking-wide text-gray-800 text-left dark:text-white lg:text-4xl">
+                      {bannerData.title}
+                    </h1>
+                    <p className="mt-4 text-gray-600 text-left dark:text-gray-300">{bannerData.caption}</p>
+                </div>
+              </a>
             ))}
           </Carousel>
         </div>
@@ -73,7 +75,7 @@ const CarouselComponent = () => {
         <Carousel
           autoPlay
           infiniteLoop
-          interval={3000}
+          interval={5000}
           swipeable
           emulateTouch
           showThumbs={false}
@@ -84,14 +86,16 @@ const CarouselComponent = () => {
           onChange={setActiveIndex}
         >
           {banner.map((bannerData) => (
-            <div key={bannerData.id}>
-                <img
-                  key={bannerData.id}
-                  className="object-cover w-full h-full max-w-2xl rounded-md"
-                  src={`${API_URL}/upload/Banner/${bannerData.image}`}
-                  alt={bannerData.link}
-                />
-            </div>
+            <a key={bannerData.link} href={bannerData.link}>
+              <div key={bannerData.id}>
+                  <img
+                    key={bannerData.id}
+                    className="object-cover w-full h-full max-w-2xl rounded-md"
+                    src={`${API_URL}/upload/Banner/${bannerData.image}`}
+                    alt={bannerData.link}
+                  />
+              </div>
+            </a>
           ))}
         </Carousel>
       </div>

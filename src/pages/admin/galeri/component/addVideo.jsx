@@ -120,7 +120,7 @@ const AddVideo = () => {
                             <select
                                 name="kategori"
                                 id="color"
-                                className="mt-1.5 w-full rounded-lg px-2 py-2 border-2 border-gray-300 text-gray-700 sm:text-sm"
+                                className="mt-1.5 w-full rounded-lg px-2 py-2 dark:bg-white border-2 border-gray-300 text-gray-700 sm:text-sm"
                                 value={video.kategori}
                                 onChange={handleInputChange}
                             >
@@ -137,8 +137,8 @@ const AddVideo = () => {
                                 onClick={handleSubmit}
                                 className="group text-center relative w-full inline-block focus:outline-none focus:ring "
                             >
-                                <span className="absolute inset-0 w-full translate-x-0 translate-y-0 bg-blue-300 transition-transform group-hover:translate-y-1.5 group-hover:translate-x-1.5"></span>
-                                <span className="relative inline-block w-full border-2 border-current px-8 py-3 text-sm font-bold uppercase tracking-widest">
+                                <span className="absolute inset-0 w-full translate-x-0 translate-y-0 bg-blue-300 dark:bg-slate-800 transition-transform group-hover:translate-y-1.5 group-hover:translate-x-1.5"></span>
+                                <span className="relative inline-block w-full border-2 border-current px-8 dark:text-white dark:border-slate-800 py-3 text-sm font-bold uppercase tracking-widest">
                                     Tambahkan
                                 </span>
                             </a>
@@ -150,7 +150,7 @@ const AddVideo = () => {
                                 // onClick={handleSubmit}
                                 className="group text-left relative w-full inline-block focus:outline-none focus:ring "
                             >
-                                <span className="absolute inset-0 w-full translate-x-0 translate-y-0 bg-yellow-300 transition-transform group-hover:translate-y-1.5 group-hover:translate-x-1.5"></span>
+                                <span className="absolute inset-0 w-full translate-x-0 translate-y-0 dark:bg-slate-800  bg-yellow-300 transition-transform group-hover:translate-y-1.5 group-hover:translate-x-1.5"></span>
                                 <span className="relative inline-block w-full border-2 border-current px-8 py-3 text-sm font-bold tracking-widest">
                                     Note: <br />
                                     1. Masuk ke youtube dan masuk pilih bagikan <br />

@@ -40,7 +40,7 @@ const VideoGaleri = () => {
         <LayoutAdmin>
             <CardDotted>
                 <div className="flex mb-8 justify-between items-center">
-                    <h1 className="text-center font-bold text-2xl">Galeri Foto</h1>
+                    <h1 className="text-center font-bold text-2xl">Galeri Video</h1>
                     <div>
                         <a onClick={handleNavigate} htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-8 h-8 border-2 border-current rounded-full cursor-pointer bg-blue-300 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-blue-500 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                             <div className="flex flex-col items-center justify-center pt-5 pb-6">

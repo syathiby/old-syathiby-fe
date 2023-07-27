@@ -89,7 +89,7 @@ const Kategori = () => {
                                 <select
                                     name="color"
                                     id="color"
-                                    className="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
+                                    className="mt-1.5 w-full rounded-lg border-2 px-2 py-2 dark:bg-white border-gray-300 text-gray-700 sm:text-sm"
                                     value={kategori.color}
                                     onChange={handleInputChange}
                                 >

@@ -1,7 +1,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-export const API_URL = 'http://localhost:8080';
+export const API_URL = 'http://192.168.10.100:8080';
 
 const axiosInstance = () => {
   const token = localStorage.getItem('token');

@@ -4,6 +4,7 @@ import {
   ReadOutlined,
   SwitcherOutlined,
   CameraOutlined,
+  PictureOutlined,
 } from "@ant-design/icons/lib/icons";
 
 // Dashboard Pages
@@ -24,6 +25,10 @@ import GaleriKategori from "../pages/admin/galeri/kategori";
 import VideoGaleri from "../pages/admin/galeri/video";
 import AddVideo from "../pages/admin/galeri/component/addVideo";
 
+// Banner Admin
+import BannerAdmin from "../pages/admin/banner";
+import AddBanner from "../pages/admin/banner/component/addBanner";
+
 export const routes = [
   {
     name: "Dashboard",
@@ -38,9 +43,20 @@ export const routes = [
     component: <FacilityAdmin />,
   },
   {
+    name: "Banner",
+    path: "/admin/banner",
+    icon: <PictureOutlined />,
+    component: <BannerAdmin />,
+  },
+  {
     name: "Post",
     icon: <ReadOutlined />,
     children: [
+      {
+        name: "Kategori",
+        path: "/admin/kategori",
+        component: <Kategori />,
+      },
       {
         name: "Blog Artikel",
         path: "/admin/artikel",
@@ -55,10 +71,10 @@ export const routes = [
         ],
       },
       {
-        name: "Kategori",
-        path: "/admin/kategori",
-        component: <Kategori />,
-      },
+        name: "Add Banner",
+        path: "/admin/banner/add",
+        component: <AddBanner />
+      }
     ],
   },
   {
