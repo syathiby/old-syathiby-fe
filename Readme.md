@@ -1,5 +1,5 @@
 
-![Logo](./public/logo.svg)
+![Logo](./public/syathiby.svg)
 
 
 # Al-Imam Asy-Syathiby Information Center
