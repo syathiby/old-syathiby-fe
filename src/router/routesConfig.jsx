@@ -29,39 +29,48 @@ import AddVideo from "../pages/admin/galeri/component/addVideo";
 import BannerAdmin from "../pages/admin/banner";
 import AddBanner from "../pages/admin/banner/component/addBanner";
 
+// User
+import UsersAdd from "../pages/admin/setting/addUsers";
+
 export const routes = [
   {
     name: "Dashboard",
     path: "/admin/dashboard",
     icon: <HomeOutlined />,
     component: <DBlog />,
+    role: ["all"]
   },
   {
     name: "Fasilitas Ma'had",
     path: "/admin/fasilitas",
     icon: <SwitcherOutlined />,
     component: <FacilityAdmin />,
+    role: ["superuser", "admin"]
   },
   {
     name: "Banner",
     path: "/admin/banner",
     icon: <PictureOutlined />,
     component: <BannerAdmin />,
+    role: ["superuser", "admin"]
   },
   {
     name: "Post",
     icon: <ReadOutlined />,
+    role: ["all"],
     children: [
       {
         name: "Kategori",
         path: "/admin/kategori",
         component: <Kategori />,
+        role: ["admin", "superuser"]
       },
       {
         name: "Blog Artikel",
         path: "/admin/artikel",
         component: <Artikel />,
         secondary: true,
+        role: ["all"],
         page: [
           {
             name: "Add Artikel",
@@ -69,33 +78,36 @@ export const routes = [
             component: <AddPost />,
           },
         ],
-      },
-      {
-        name: "Add Banner",
-        path: "/admin/banner/add",
-        component: <AddBanner />
       }
     ],
   },
   {
     name: "Galeri",
     icon: <CameraOutlined />,
+    role: ["superuser", "admin"],
     children: [
       {
         name: "Kategori",
         path: "/admin/galeri/kategori",
-        component: <GaleriKategori />
+        component: <GaleriKategori />,
+        role: ["superuser", "admin"]
       },
       {
         name: "Foto",
         path: "/admin/galeri/foto",
         component: <FotoGaleri />,
+        role: ["superuser", "admin"],
         secondary: true,
         page: [
           {
             name: "Add Foto",
             path: "/admin/galeri/foto/add",
             component: <AddFoto />
+          },
+          {
+            name: "Add Banner",
+            path: "/admin/banner/add",
+            component: <AddBanner />
           }
         ]
       },
@@ -103,6 +115,7 @@ export const routes = [
         name: "Video",
         path: "/admin/galeri/video",
         component: <VideoGaleri />,
+        role: ["superuser", "admin"],
         secondary: true,
         page: [
           {
@@ -117,18 +130,18 @@ export const routes = [
   {
     name: "Settings",
     icon: <SettingOutlined />,
+    role: ["all"],
     children: [
       {
         name: "Add user",
-        path: "setting/add-user",
+        path: "/admin/setting/addUser",
+        component: <UsersAdd />,
+        role: ["superuser"]
       },
       {
         name: "Setting App",
         path: "setting/app",
-      },
-      {
-        name: "Profile",
-        path: "setting/profile",
+        role: ["admin"]
       },
     ],
   },

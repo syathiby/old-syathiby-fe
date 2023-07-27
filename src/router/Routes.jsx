@@ -11,9 +11,14 @@ import PrivateRoutes from "../hooks/privateRoutes";
 import DetailPost from "../pages/blog/Detail";
 
 import { routes } from "./routesConfig";
+
+// Dashboard Blog Defaults
 import DBlog from "../pages/admin/dBlog";
 
 function AppRouter() {
+
+  console.log(routes)
+
     return (
         <div className="App">
           <Routes>
@@ -21,7 +26,7 @@ function AppRouter() {
             <Route path="/" element={<DashboardLayout />} />
             <Route path="/post/:link" element={<DetailPost />} />
 
-            {/* Page Admin Routes */}
+            {/* Routes Role */}
             <Route path="/admin" element={<PrivateRoutes />}>
               <Route index element={<DBlog />} />
               {routes.map((route, index) => {

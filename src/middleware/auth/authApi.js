@@ -69,11 +69,7 @@ export const getPhoto = () => {
 
 export const logoutUser = () => {
   if (getToken()) {
-    localStorage.removeItem('token');
-    localStorage.removeItem('nama');
-    localStorage.removeItem('role');
-    localStorage.removeItem('photo');
-    localStorage.removeItem('uid');
+    localStorage.clear();
 
     Swal.fire({
       title: 'Success!',

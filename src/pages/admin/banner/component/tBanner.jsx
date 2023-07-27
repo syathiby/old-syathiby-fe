@@ -33,7 +33,7 @@ const TableBanner = () => {
           console.error("Error:", error);
         }
       };
-
+      
     const fetchData = async () => {
         try {
             const response = await get('v1/admin/banner');

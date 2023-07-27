@@ -3,12 +3,21 @@ import { API_URL } from '../../../middleware/services/api';
 import { getNama, getPhoto, getRole, logoutUser } from '../../../middleware/auth/authApi';
 import { CaretUpOutlined, CaretDownOutlined, LogoutOutlined } from '@ant-design/icons';
 
-import { NavLink, useLocation } from 'react-router-dom';
-import { routes } from '../../../router/routesConfig'
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { routes } from '../../../router/routesConfig';
 
 const Sidebar = ({ isOpen }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState({});
+  const currentUserRole = getRole();
   const location = useLocation();
+
+  const initialDropdownState = routes.reduce((acc, item) => {
+    if (item.children) {
+      acc[item.name] = false;
+    }
+    return acc;
+  }, {});
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(initialDropdownState);
 
   const handleSidebarToggle = () => {
     setIsOpen(!isOpen);
@@ -22,63 +31,69 @@ const Sidebar = ({ isOpen }) => {
   };
 
   const renderMenuItem = (item) => {
-    if (item.children) {
-      const isParentOpen = isDropdownOpen[item.name];
+    const itemRole = item.role || []; // Perform null-check for item.role
 
-      return (
-        <li key={item.name}>
-          <button
-            onClick={() => handleDropdownToggle(item.name)}
-            className={`flex w-full items-center justify-between p-2 text-gray-900 rounded-lg dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 group ${
-              isParentOpen ? 'bg-blue-200 dark:bg-gray-700' : ''
-            }`}
-          >
-            <div className="flex items-center">
+    if (itemRole.includes("all") || itemRole.includes(currentUserRole)) {
+      if (item.children) {
+        const isParentOpen = isDropdownOpen[item.name];
+
+        return (
+          <li key={item.name}>
+            <button
+              onClick={() => handleDropdownToggle(item.name)}
+              className={`flex w-full items-center justify-between p-2 text-gray-900 rounded-lg dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 group ${
+                isParentOpen ? 'bg-blue-200 dark:bg-gray-700' : ''
+              }`}
+            >
+              <div className="flex items-center">
+                {item.icon}
+                <span className="ml-3">{item.name}</span>
+              </div>
+              <div className="flex items-center">
+                {isParentOpen ? <CaretUpOutlined /> : <CaretDownOutlined />}
+              </div>
+            </button>
+            {isParentOpen && (
+              <ul className="pl-4 w-full">
+                {item.children.map((child) =>
+                  (child.role || []).includes("all") || (child.role || []).includes(currentUserRole) ? (
+                    <li key={child.name}>
+                      <NavLink
+                        to={child.path}
+                        className={`flex items-center p-2 text-gray-900 my-2 rounded-lg dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 group ${
+                          location.pathname === child.path ? 'bg-blue-200 dark:bg-gray-700' : ''
+                        }`}
+                        activeClassName="bg-blue-200 dark:bg-gray-700"
+                      >
+                        {child.icon}
+                        <span className="ml-4">{child.name}</span>
+                      </NavLink>
+                    </li>
+                  ) : null
+                )}
+              </ul>
+            )}
+          </li>
+        );
+      } else {
+        return (
+          <li key={item.name}>
+            <NavLink
+              to={item.path}
+              className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 group ${
+                location.pathname === item.path ? 'bg-blue-200 dark:bg-gray-700' : ''
+              }`}
+              activeClassName="bg-blue-200 dark:bg-gray-700"
+            >
               {item.icon}
               <span className="ml-3">{item.name}</span>
-            </div>
-            <div className="flex items-center">
-              {isParentOpen ? <CaretUpOutlined /> : <CaretDownOutlined />}
-            </div>
-          </button>
-          {isParentOpen && (
-            <ul className="pl-4 w-full">
-              {item.children.map((child) =>
-                getRole(child.role) ? (
-                  <li key={child.name}>
-                    <NavLink
-                      to={child.path}
-                      className={`flex items-center p-2 text-gray-900 my-2 rounded-lg dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 group ${
-                        location.pathname === child.path ? 'bg-blue-200 dark:bg-gray-700' : ''
-                      }`}
-                      activeclassname="bg-blue-200 dark:bg-gray-700"
-                    >
-                      {child.icon}
-                      <span className="ml-4">{child.name}</span>
-                    </NavLink>
-                  </li>
-                ) : null
-              )}
-            </ul>
-          )}
-        </li>
-      );
-    } else {
-      return (
-        <li key={item.name}>
-          <NavLink
-            to={item.path}
-            className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 group ${
-              location.pathname === item.path ? 'bg-blue-200 dark:bg-gray-700' : ''
-            }`}
-            activeclassname="bg-blue-200 dark:bg-gray-700"
-          >
-            {item.icon}
-            <span className="ml-3">{item.name}</span>
-          </NavLink>
-        </li>
-      );
+            </NavLink>
+          </li>
+        );
+      }
     }
+
+    return null;
   };
 
   return (

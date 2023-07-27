@@ -6,9 +6,9 @@ function Address(){
                 <div>
                     <p className="font-medium text-blue-500 dark:text-blue-400">Contact us</p>
         
-                    <h1 className="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">Get in touch</h1>
+                    <h1 className="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">Ahlan</h1>
         
-                    <p className="mt-3 text-gray-500 dark:text-gray-400">Our friendly team would love to hear from you.</p>
+                    <p className="mt-3 text-gray-500 dark:text-gray-400">Datang Langsung Ke Ma'had Al-Imam Asy-Syathibi.</p>
                 </div>
         
                 <div className="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-3">

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
-import { API_URL, get } from "../../../middleware/services/api"
+import { API_URL, get, remove } from "../../../middleware/services/api"
 
 import LayoutAdmin from "../../../layout/adminLayout/layout"
-import { PlusOutlined } from "@ant-design/icons"
+import { DeleteOutlined, PlusOutlined } from "@ant-design/icons"
 import { useNavigate } from "react-router-dom"
+import Swal from "sweetalert2"
 
 const FotoGaleri = () => {
 
@@ -45,6 +46,33 @@ const FotoGaleri = () => {
       const handleNavigate = () => {
         navigate('/admin/galeri/foto/add')
       }
+
+      const handleRemove = async (id) => {
+        try {
+          const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          });
+          if (result.isConfirmed) {
+            await remove(`v1/admin/galeri/${id}`);
+            Swal.fire({
+                title: 'Deleted!',
+                text: 'Your Data has been deleted.',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            fetchData();
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      };
     
 
     return(
@@ -61,25 +89,32 @@ const FotoGaleri = () => {
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-                {foto && foto.map((item) => (
-                    <div key={item.id}>
-                        <a href="#" className="block">
-                            <img
-                                alt={item.title}
-                                src={`${API_URL}/upload/Galeri/${item.filename}`}
-                                className="h-56 w-full rounded-bl-3xl rounded-tr-3xl object-cover sm:h-64 lg:h-72"
-                            />
-
-                            <div className="mt-4 sm:flex sm:items-center sm:justify-center sm:gap-4">
-                                <strong className="font-medium">{item.title}</strong>
-
-                                <span className="hidden sm:block sm:h-px sm:w-8 sm:bg-yellow-500"></span>
-
-                                <p className="mt-0.5 opacity-50 sm:mt-0">{truncateDescription(item.caption, 12)} <br/> {item.nkategori}</p>
-                            </div>
-                        </a>
+              {foto && foto.map((item) => (
+                <div key={item.id} className="relative">
+                  <a href="#" className="block">
+                    <img
+                      alt={item.title}
+                      src={`${API_URL}/upload/Galeri/${item.filename}`}
+                      className="h-56 w-full rounded-bl-3xl rounded-tr-3xl object-cover sm:h-64 lg:h-72"
+                    />
+                    <div className="absolute bg-red top-2 right-2">
+                      {/* Delete Button */}
+                      <button
+                        onClick={() => handleRemove(item.id)}
+                        className="text-white font-bold hover:text-red-500 transition duration-300"
+                      >
+                        <DeleteOutlined className="mb-2" />
+                      </button>
                     </div>
-                ))}
+                  </a>
+                  <div className="mt-4 sm:flex sm:items-center sm:justify-center sm:gap-4">
+                    <strong className="font-medium">{item.title}</strong>
+                    <span className="hidden sm:block sm:h-px sm:w-8 sm:bg-yellow-500"></span>
+                    <p className="mt-0.5 opacity-50 sm:mt-0">{truncateDescription(item.caption, 12)} <br/> {item.nkategori}</p>
+                  </div>
+                </div>
+              ))}
+
             </div>
         </LayoutAdmin>
     )

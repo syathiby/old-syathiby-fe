@@ -1,6 +1,23 @@
+import { useEffect, useState } from "react";
 import { API_URL } from "../../../middleware/services/api"
 
 function Navbar() {
+
+    const [theme, setTheme] = useState('light');
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const updateTheme = (event) => {
+        setTheme(event.matches ? 'dark' : 'light');
+        };
+
+        updateTheme(mediaQuery); 
+
+        mediaQuery.addEventListener('change', updateTheme);
+        return () => {
+        mediaQuery.removeEventListener('change', updateTheme);
+        };
+    }, []);
 
     return(
         <>
@@ -22,7 +39,11 @@ function Navbar() {
                         <li><a>Item 3</a></li>
                     </ul>
                     </div>
-                    <img src={`${API_URL}/upload/logo/syathiby.png`} className="h-16" alt="" />
+                    {theme === 'light' ? (
+                        <img src={`${API_URL}/upload/logo/horizontal.png`} className="h-16" alt="" />
+                    ) : (
+                        <img src={`${API_URL}/upload/logo/white.png`} className="h-16" alt="" />
+                    )}
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

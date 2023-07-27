@@ -1,5 +1,7 @@
 const VisiMisi = () => {
     return(
+        <section className="dark:bg-gray-900">
+
         <div className="grid grid-cols-1 shadow-md lg:grid-cols-2 my-8 mx-4 lg:mx-48">
             <div className="w-full px-8 py-8 bg-blue-00">
               <h1 className="text-center font-bold">Visi Ma'had</h1>
@@ -18,6 +20,7 @@ const VisiMisi = () => {
               </article>
             </div>
         </div>
+        </section>
     )
 }
 

@@ -10,7 +10,10 @@ import Address from "./component/address";
 import Layout from "./Layout";
 import VisiMisi from "./component/visiMisi";
 
+import ReactModal from "react-modal";
+
 function DashboardLayout() {
+  ReactModal.setAppElement("#root");
   return (
     <>
       <Layout>

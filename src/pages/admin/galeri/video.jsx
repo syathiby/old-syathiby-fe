@@ -52,13 +52,14 @@ const VideoGaleri = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                     {videoData.map((item) => (
-                        <div>
+                        <div key={item.id}>
                             <iframe
                                 className="h-64 w-full rounded-xl border-2 shadow-md"
                                 src={`https://www.youtube.com/embed/${item.filename}`}
                                 title="YouTube video player"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowFullScreen />
+                                allowFullScreen
+                            />
                         </div>
                     ))}
                 </div>

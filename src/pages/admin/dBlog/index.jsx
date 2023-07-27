@@ -10,18 +10,32 @@ const DBlog = () => {
 
   const [data, setData] = useState({
     post: null,
-    totalPost: null
+    totalPost: null,
+    totalFoto: null,
+    totalVideo: null,
+    totalBanner: null,
+    banner: [],
+    posts: [],
+    galeri: []
   });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const totalCountResponse = await get("v1/admin/post");
+        const totalCountGaleriResponse = await get("v1/admin/galeri");
+        const totalCountBannerResponse = await get("v1/admin/banner");
         const latestPostResponse = await get("v1/admin/post", { sort: "-created_at", limit: 1 });
 
         setData({
           post: latestPostResponse.length > 0 ? latestPostResponse[0] : null,
-          totalPost: totalCountResponse.length
+          totalPost: totalCountResponse.length,
+          totalBanner: totalCountBannerResponse.length,
+          totalFoto: totalCountGaleriResponse.filter((item) => item.type === "photo").length,
+          totalVideo: totalCountGaleriResponse.filter((item) => item.type === "video").length,
+          banner: totalCountBannerResponse.slice(0, 2),
+          posts: totalCountResponse.slice(0, 2),
+          galeri: totalCountGaleriResponse.filter((item) => item.type === "photo").slice(0, 6),
         });
       } catch (error) {
         console.error("Error Fetching Data", error);
@@ -38,7 +52,7 @@ const DBlog = () => {
     }
     return strippedDescription;
   };
-  
+
   const formatCreatedAt = (dateString) => {
     const date = new Date(dateString);
     const options = { year: 'numeric', month: 'long' };
@@ -61,38 +75,38 @@ const DBlog = () => {
               </div>
            </CardDotted>
 
-            <div className="w-full h-full bg-white rounded-md border-2 border-slate-500 px-4 py-2">
+           <CardDotted>
               <div className="flex flex-col text-center">
                 <dt className="order-last text-lg font-medium text-gray-500">
-                  Total Post
+                  Total Foto
                 </dt>
                 <dd className="text-4xl font-extrabold text-blue-600 md:text-5xl">
-                  4
+                  {data.totalFoto}
                 </dd>
               </div>
-            </div>
+           </CardDotted>
 
-            <div className="w-full h-full bg-white rounded-md border-2 border-slate-500 px-4 py-2">
+           <CardDotted>
               <div className="flex flex-col text-center">
                 <dt className="order-last text-lg font-medium text-gray-500">
-                  Total Post
+                  Total Video
                 </dt>
                 <dd className="text-4xl font-extrabold text-blue-600 md:text-5xl">
-                  4
+                  {data.totalVideo}
                 </dd>
               </div>
-            </div>
+           </CardDotted>
 
-            <div className="w-full h-full bg-white rounded-md border-2 border-slate-500 px-4 py-2">
+           <CardDotted>
               <div className="flex flex-col text-center">
                 <dt className="order-last text-lg font-medium text-gray-500">
-                  Total Post
+                  Total Banner
                 </dt>
                 <dd className="text-4xl font-extrabold text-blue-600 md:text-5xl">
-                  4
+                  {data.totalBanner}
                 </dd>
               </div>
-            </div>
+           </CardDotted>
 
           </div>
 
@@ -139,14 +153,67 @@ const DBlog = () => {
 
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mt-8 md:mt-8">
-          <div className="lg:col-span-3">
-            <div className="h-full w-full rounded-md bg-white border-2 border-slate-500">
-            
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mt-8 md:mt-8">
+          <div className="lg:col-span-2">
+            <CardDotted>
+              <div>
+                <h1 className="text-center font-semibold">Banner Aktif</h1>
+              </div>
+              <div className="grid grid-cols-1 my-4 gap-8"> 
+                {data.banner.map((item) => (
+                  <div key={item.id}>
+                    <img src={`${API_URL}/upload/Banner/${item.image}`} className="rounded-lg shadow-md"></img>
+                  </div>
+                ))}
+              </div>
+            </CardDotted>
           </div>
-          <div className="h-full w-full rounded-md bg-white border-2 border-slate-500">
-            <p>2</p>
+
+          <div className="lg:col-span-3">
+            <CardDotted>
+              <div>
+                <h1 className="text-center font-semibold">Postingan Terbaru</h1>
+              </div>
+
+              <div className="grid grid-cols-2 my-3 mx-3 gap-8">
+                {data.posts.map((item) => (
+                  <article key={item.link} className="group my-2">
+                    <img
+                      alt="Lava"
+                      src={`${API_URL}/upload/Post/${item.img}`}
+                      className="h-56 w-full rounded-xl object-cover shadow-xl transition group-hover:grayscale-[50%]"
+                    />
+                  
+                    <div className="p-4">
+                      <a href="#">
+                        <h3 className="text-lg font-medium text-gray-900">
+                          {item.title}
+                        </h3>
+                      </a>
+                  
+                      <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
+                      {truncateDescription(item.description, 80)}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </CardDotted>
+          </div>
+
+          <div className="lg:col-span-2">
+            <CardDotted>
+              <div>
+                <h1 className="text-center font-semibold">Galeri</h1>
+              </div>
+              <div className="grid grid-cols-3 gap-4 my-4">
+                {data.galeri.map((item) => (
+                  <div key={item.id}>
+                    <img src={`${API_URL}/upload/Galeri/${item.filename}`} className=" h-16 w-32 rounded-lg shadow-lg object-cover" />
+                  </div>
+                ))}
+              </div>
+            </CardDotted>
           </div>
         </div>
     </LayoutAdmin>
