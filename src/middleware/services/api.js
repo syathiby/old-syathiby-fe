@@ -22,7 +22,7 @@ const axiosInstance = () => {
           timer: 3000
         }).then(() => {
           window.location.reload();   
-          localStorage.removeItem('token')
+          localStorage.clear()
         })
       }
       return Promise.reject(error);

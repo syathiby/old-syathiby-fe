@@ -10,13 +10,13 @@ export const handleSignIn = (username, password, handleSignInResult) => {
     axios.post(`${API_URL}/v1/login`, formdata)
       .then((response) => {
         if (response.status === 200) {
-          const { token, name, role, photo, uid } = response.data;
+          const { token, name, role, photo } = response.data;
   
           localStorage.setItem('token', token);
           localStorage.setItem('name', name);
           localStorage.setItem('role', role);
           localStorage.setItem('photo', photo);
-          localStorage.setItem('uid', uid);
+          localStorage.setItem('isLoggedIn', 'true');
   
           Swal.fire({
             title: 'Success!',

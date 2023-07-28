@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { API_URL, get } from "../../middleware/services/api";
 import moment from "moment";
 import Layout from "./Layout";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const DetailPost = () => {
   const { link } = useParams();
@@ -40,17 +41,28 @@ const DetailPost = () => {
   }, []);
 
   if (post === null) {
-    return <div>Loading...</div>;
+    // Tampilkan loading di tengah konten
+    return (
+      <Layout>
+        <div className="flex justify-center items-center h-screen">
+          <div className="loader">
+            <LoadingOutlined />
+          </div>
+        </div>
+      </Layout>
+    );
   }
 
   return (
     <Layout>
       <div id="article" className="container mx-auto px-4 py-4">
+        {/* Konten detail post */}
         <div className="max-w-2xl mx-auto relative">
           <img
             className="rounded-lg w-full"
             src={`${API_URL}/upload/post/${post.img}`}
             alt={post.title}
+            loading="lazy"
           />
           <div className={`absolute top-2 right-2 ${post.color} px-2 py-1 rounded-tr-md rounded-bl-md`}>
             <p className="text-black font-bold text-xs">{post.name}</p>

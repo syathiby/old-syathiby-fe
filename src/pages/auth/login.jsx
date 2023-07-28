@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { API_URL } from '../../middleware/services/api';
 import { useNavigate } from 'react-router-dom';
 import { handleSignIn } from '../../middleware/auth/authApi';
+import { isLoggedIn } from '../../hooks/checkAuth';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    if (isLoggedIn()) {
+      navigate("/admin");
+    }
+  }, []);
+
   const navigate = useNavigate();
 
   const handleClickSignIn = (e) => {

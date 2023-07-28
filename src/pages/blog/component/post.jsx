@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { API_URL, get } from '../../../middleware/services/api';
 import moment from 'moment/moment';
+import { useNavigate } from 'react-router-dom';
 
 function Post() {
   const [posts, setPosts] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +29,10 @@ function Post() {
     return strippedDescription;
   };
 
+  const handleClick = (name, link) => {
+    navigate(`/artikel/${name}/${link}`);
+  };
+
   return (
     <div className="container px-6 py-10 mx-auto">
       <div className="py-4">
@@ -47,22 +53,26 @@ function Post() {
               className="relative z-10 object-cover w-full rounded-md h-96"
               src={`${API_URL}/upload/Post/${postData.img}`}
               alt={postData.title}
+              loading="lazy"
             />
 
             <div className="relative z-20 max-w-lg p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900">
-              <Link
-                to={`/post/${postData.link}`}
+              <a  
+                onClick={() => handleClick(postData.name, postData.link)}
                 className="font-semibold text-gray-800 hover:underline dark:text-white md:text-lg"
               >
                 {postData.title}
-              </Link>
+              </a>
 
               <p className="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
                 {truncateDescription(postData.description, 80)}
                 {postData.description.length > 80 && (
-                  <Link className="font-bold text-blue-500" to={`/post/${postData.link}`}>
-                    &nbsp; <br/> Read More
-                  </Link>
+                  <a
+                    className="font-bold text-blue-500 cursor-pointer"
+                    onClick={() => handleClick(postData.name, postData.link)}
+                  >
+                    &nbsp; <br /> Read More
+                  </a>
                 )}
               </p>
 

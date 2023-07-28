@@ -17,14 +17,12 @@ import DBlog from "../pages/admin/dBlog";
 
 function AppRouter() {
 
-  console.log(routes)
-
     return (
         <div className="App">
           <Routes>
             {/* Page Blog Routes */}
             <Route path="/" element={<DashboardLayout />} />
-            <Route path="/post/:link" element={<DetailPost />} />
+            <Route path="/artikel/:name/:link" element={<DetailPost />} />
 
             {/* Routes Role */}
             <Route path="/admin" element={<PrivateRoutes />}>

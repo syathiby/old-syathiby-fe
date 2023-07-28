@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from React Router
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { API_URL, get } from '../../../middleware/services/api';
@@ -59,14 +60,14 @@ const CarouselComponent = () => {
             onChange={setActiveIndex}
           >
             {banner.map((bannerData) => (
-              <a key={bannerData.link} href={bannerData.link}>
-                <div key={bannerData.id}>
-                    <h1 className="text-3xl font-semibold tracking-wide text-gray-800 text-left dark:text-white lg:text-4xl">
-                      {bannerData.title}
-                    </h1>
-                    <p className="mt-4 text-gray-600 text-left dark:text-gray-300">{bannerData.caption}</p>
-                </div>
-              </a>
+              <div key={bannerData.id}>
+                <h1 className="text-3xl font-semibold tracking-wide text-gray-800 text-left dark:text-white lg:text-4xl">
+                  {bannerData.title}
+                </h1>
+                <p className="mt-4 text-gray-600 text-left dark:text-gray-300">
+                  {bannerData.caption}
+                </p>
+              </div>
             ))}
           </Carousel>
         </div>
@@ -86,16 +87,18 @@ const CarouselComponent = () => {
           onChange={setActiveIndex}
         >
           {banner.map((bannerData) => (
-            <a key={bannerData.link} href={bannerData.link}>
+            <Link key={bannerData.link} to={bannerData.link}>
+              {/* Use Link component from React Router */}
               <div key={bannerData.id}>
-                  <img
-                    key={bannerData.id}
-                    className="object-cover w-full h-full max-w-2xl rounded-md"
-                    src={`${API_URL}/upload/Banner/${bannerData.image}`}
-                    alt={bannerData.link}
-                  />
+                <img
+                  key={bannerData.id}
+                  className="object-cover w-full h-full max-w-2xl rounded-md"
+                  src={`${API_URL}/upload/Banner/${bannerData.image}`}
+                  alt={bannerData.link}
+                  loading="lazy"
+                />
               </div>
-            </a>
+            </Link>
           ))}
         </Carousel>
       </div>

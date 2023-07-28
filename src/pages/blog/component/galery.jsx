@@ -94,6 +94,7 @@ function Galery() {
                         className="object-cover w-full rounded-lg h-56"
                         src={`${API_URL}/upload/Galeri/${item.filename}`}
                         alt=""
+                        loading="lazy"
                       />
                       <h2 className="mt-4 text-xl font-semibold text-gray-800 capitalize dark:text-white">
                         {item.title}
@@ -105,13 +106,22 @@ function Galery() {
                   );
                 } else if (item.type === "video") {
                   return (
-                    <iframe
-                      className="h-64 w-full rounded-xl border-2 shadow-md"
-                      src={`https://www.youtube.com/embed/${item.filename}`}
-                      title="YouTube video player"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
+                    <div key={item.id}>
+                      <iframe
+                        className="h-64 w-full rounded-xl border-2 shadow-md"
+                        src={`https://www.youtube.com/embed/${item.filename}`}
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        loading="lazy"
+                      />
+                      <h2 className="mt-4 text-xl font-semibold text-gray-800 capitalize dark:text-white">
+                        {item.title}
+                      </h2>
+                      <p className="mt-2 text-lg tracking-wider text-blue-500 uppercase dark:text-blue-400">
+                        {item.nkategori}
+                      </p>
+                    </div>
                   );
                 }
                 return null;
@@ -126,6 +136,7 @@ function Galery() {
                       title="YouTube video player"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
+                      loading="lazy"
                     />
                     <h2 className="mt-4 text-xl font-semibold text-gray-800 capitalize dark:text-white">
                       {item.title}

@@ -7,7 +7,7 @@ function FooterN() {
             <div className="container px-6 py-8 mx-auto">
                 <div className="flex flex-col items-center text-center">
                     <a href="/">
-                        <img className="w-auto h-28" src={`${API_URL}/upload/logo/syathiby.png`} alt="Logo" />
+                        <img loading="lazy" className="w-auto h-28" src={`${API_URL}/upload/logo/syathiby.png`} alt="Logo" />
                     </a>
 
                     <div className="flex flex-wrap justify-center mt-6 -mx-4">
