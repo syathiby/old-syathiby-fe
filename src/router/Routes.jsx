@@ -2,18 +2,23 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Pages Blog
 import DashboardLayout from "../pages/blog/Dashboard";
-
-// Admin Pages
-import Login from "../pages/auth/login";
+import ArtikelAll from "../pages/blog/Artikel";
+import ArtikelLabel from "../pages/blog/Label";
+import DetailPost from "../pages/blog/Detail";
 
 // Private Routes
 import PrivateRoutes from "../hooks/privateRoutes";
-import DetailPost from "../pages/blog/Detail";
-
 import { routes } from "./routesConfig";
 
+// Login Pages
+import Login from "../pages/auth/login";
+
+// Admin Pages
 // Dashboard Blog Defaults
 import DBlog from "../pages/admin/dBlog";
+
+// Import Error Pages!
+import NotFound404 from "../pages/error/NotFound";
 
 function AppRouter() {
 
@@ -22,6 +27,8 @@ function AppRouter() {
           <Routes>
             {/* Page Blog Routes */}
             <Route path="/" element={<DashboardLayout />} />
+            <Route path="/artikel" element={<ArtikelAll />} />
+            <Route path="/artikel/:name" element={<ArtikelLabel />} />
             <Route path="/artikel/:name/:link" element={<DetailPost />} />
 
             {/* Routes Role */}
@@ -62,6 +69,9 @@ function AppRouter() {
     
             {/* Login Page Routes */}
             <Route path="/login" element={<Login />} />
+
+              {/* 404 Page */}
+            <Route path="*" element={<NotFound404 />} />
           </Routes>
         </div>
       );

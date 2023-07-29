@@ -5,6 +5,7 @@ import {
   SwitcherOutlined,
   CameraOutlined,
   PictureOutlined,
+  ProfileOutlined,
 } from "@ant-design/icons/lib/icons";
 
 // Dashboard Pages
@@ -31,6 +32,7 @@ import AddBanner from "../pages/admin/banner/component/addBanner";
 
 // User
 import UsersAdd from "../pages/admin/setting/addUsers";
+import TestiMoni from "../pages/admin/testimoni/testi";
 
 export const routes = [
   {
@@ -126,6 +128,13 @@ export const routes = [
         ]
       },
     ],
+  },
+  {
+    name: "Testimonial",
+    path: '/admin/testimonial',
+    icon: <ProfileOutlined />,
+    component:<TestiMoni />,
+    role: ["superuser", "admin"]
   },
   {
     name: "Settings",

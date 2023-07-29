@@ -6,7 +6,7 @@ const Layout = ({children}) => {
 
     return (
         <>
-            <div className="py-4 dark:bg-gray-900 px-4 shadow-xl">
+            <div className="py-4 dark:bg-gray-900 px-4 shadow-sm">
                 <Navbar />
             </div>
             <main  className="py-2">

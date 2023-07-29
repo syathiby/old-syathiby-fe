@@ -33,13 +33,24 @@ function Post() {
     navigate(`/artikel/${name}/${link}`);
   };
 
+  const handleAll = () => {
+    navigate('/artikel')
+  }
+
   return (
     <div className="container px-6 py-10 mx-auto">
       <div className="py-4">
         <h1 className="font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
           Artikel Ma'had
         </h1>
-        <label htmlFor="">Jelajahi Artikel Ma'had AL-Imam Asy-Syathiby</label>
+        <div className='flex justify-between'>
+          <div>
+            <a href='#' onClick={handleAll} htmlFor="">Jelajahi Artikel Ma'had AL-Imam Asy-Syathiby...</a>
+          </div>
+          <div>
+            <button onClick={handleAll} className='bg-green-400 font-semibold text-white px-4 py-2 hover:text-black hover:bg-green-500 rounded-lg shadow-md'>Lihat Semua Artikel</button>
+          </div>
+        </div>
         <div className="flex justify-start mx-auto mt-2">
           <span className="inline-block w-40 h-1 bg-blue-500 rounded-full"></span>
           <span className="inline-block w-3 h-1 mx-1 bg-blue-500 rounded-full"></span>
@@ -57,7 +68,8 @@ function Post() {
             />
 
             <div className="relative z-20 max-w-lg p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900">
-              <a  
+              <a
+                href='#'  
                 onClick={() => handleClick(postData.name, postData.link)}
                 className="font-semibold text-gray-800 hover:underline dark:text-white md:text-lg"
               >
@@ -68,6 +80,7 @@ function Post() {
                 {truncateDescription(postData.description, 80)}
                 {postData.description.length > 80 && (
                   <a
+                  href='#'
                     className="font-bold text-blue-500 cursor-pointer"
                     onClick={() => handleClick(postData.name, postData.link)}
                   >

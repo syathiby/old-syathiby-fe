@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { API_URL, get } from "../../middleware/services/api";
 import moment from "moment";
 import Layout from "./Layout";
@@ -8,6 +8,12 @@ import { LoadingOutlined } from "@ant-design/icons";
 const DetailPost = () => {
   const { link } = useParams();
   const [post, setPost] = useState(null);
+
+  const navigate = useNavigate()
+
+  const handleKategori = (dream) => {
+    navigate(`/artikel/${dream}`);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,7 +70,7 @@ const DetailPost = () => {
             alt={post.title}
             loading="lazy"
           />
-          <div className={`absolute top-2 right-2 ${post.color} px-2 py-1 rounded-tr-md rounded-bl-md`}>
+          <div onClick={() => handleKategori(post.name)} className={`absolute top-2 right-2 ${post.color} px-2 py-1 rounded-tr-md rounded-bl-md`}>
             <p className="text-black font-bold text-xs">{post.name}</p>
           </div>
           <h1 className="text-3xl font-bold mt-6">{post.title}</h1>
