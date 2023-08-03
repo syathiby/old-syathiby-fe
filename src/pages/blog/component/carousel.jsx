@@ -35,7 +35,7 @@ const CarouselComponent = () => {
   return (
     <div className="container flex flex-col px-4 mx-auto space-y-6 lg:h-[32rem] py-8 lg:py-16 lg:flex-row lg:items-center">
       <div className="flex flex-col items-center w-full lg:flex-row lg:w-1/2">
-        <div className="flex justify-center order-2 mt-6 lg:mt-0 lg:space-y-3 lg:flex-col">
+        <div className="hidden sm:flex justify-center order-2 mt-6 lg:mt-0 lg:space-y-3 lg:flex-col">
           {banner.map((_, index) => (
             <Indicator
               key={index}
@@ -45,11 +45,12 @@ const CarouselComponent = () => {
           ))}
         </div>
 
-        <div className="max-w-xs sm:mx-12 lg:mx-12 lg:order-2">
+        <div className="max-w-xs hidden sm:block sm:mx-12 lg:mx-12 lg:order-2">
           <Carousel
             autoPlay
             infiniteLoop
             interval={5000}
+            // transitionTime={200}
             swipeable
             emulateTouch
             showThumbs={false}
@@ -60,7 +61,7 @@ const CarouselComponent = () => {
             onChange={setActiveIndex}
           >
             {banner.map((bannerData) => (
-              <div key={bannerData.id}>
+              <div className='mx-1' key={bannerData.id}>
                 <h1 className="text-3xl font-semibold tracking-wide text-gray-800 text-left dark:text-white lg:text-4xl">
                   {bannerData.title}
                 </h1>
@@ -77,6 +78,7 @@ const CarouselComponent = () => {
           autoPlay
           infiniteLoop
           interval={5000}
+          // transitionTime={900}
           swipeable
           emulateTouch
           showThumbs={false}

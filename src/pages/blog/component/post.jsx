@@ -92,7 +92,7 @@ function Post() {
               <p className="mt-3 text-sm text-blue-500">
                 {moment(postData.created_at).isAfter(moment().subtract(24, 'hours'))
                   ? moment(postData.created_at).fromNow()
-                  : moment(postData.created_at).format('DD-MMMM-YY')}
+                  : moment(postData.created_at).format('DD MMMM Y')}
               </p>
             </div>
           </div>

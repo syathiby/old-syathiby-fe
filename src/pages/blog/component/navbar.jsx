@@ -40,9 +40,13 @@ function Navbar() {
                     </ul>
                     </div>
                     {theme === 'light' ? (
-                        <img src={`${API_URL}/upload/logo/horizontal.png`} className="h-16" alt="" />
+                        <a href="/">
+                            <img src={`${API_URL}/upload/logo/horizontal.png`} className="h-16" alt="" />
+                        </a>
                     ) : (
-                        <img src={`${API_URL}/upload/logo/white.png`} className="h-16" alt="" />
+                        <a href="/">
+                            <img src={`${API_URL}/upload/logo/white.png`} className="h-16" alt="" />
+                        </a>
                     )}
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -57,7 +61,7 @@ function Navbar() {
                         </ul>
                         </details>
                     </li>
-                    <li><a>Item 3</a></li>
+                    <li><a href="https://syathiby.id/">PPDB</a></li>
                     </ul>
                 </div>
                 <div className="navbar-end">

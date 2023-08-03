@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { API_URL, get } from "../../../middleware/services/api";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 
 function Testimonial() {
   const [testi, setTesti] = useState([]);
@@ -33,17 +34,36 @@ function Testimonial() {
         </div>
 
         <div className="flex items-center justify-center mt-16">
-          <div className="w-96">
+          <div className="w-ull">
             <Carousel
               autoPlay
               infiniteLoop
               interval={5000}
-              swipeable
-              emulateTouch
-              showThumbs={false}
-              showArrows={false}
+              transitionTime={2000}
               showStatus={false}
               showIndicators={false}
+              renderArrowPrev={(onClickHandler, hasPrev, label) =>
+                hasPrev && (
+                  <button
+                    className="bg-green-400 dark:bg-slate-800 shadow-md border-2 border-current w-10 h-10 pb-2 dark:text-white rounded-full my-10"
+                    onClick={onClickHandler}
+                    title={label}
+                  >
+                    <ArrowLeftOutlined />
+                  </button>
+                )
+              }
+              renderArrowNext={(onClickHandler, hasNext, label) =>
+                hasNext && (
+                  <button
+                    className="bg-green-400 dark:bg-slate-800 shadow-md border-2 border-current w-10 h-10 pb-2 dark:text-white rounded-full my-10"
+                    onClick={onClickHandler}
+                    title={label}
+                  >
+                    <ArrowRightOutlined />
+                  </button>
+                )
+              }
             >
               {testi.map((item) => (
                 <div key={item.id}>
@@ -56,7 +76,7 @@ function Testimonial() {
                       loading="lazy"
                       className="object-contain rounded-full w-10 h-20"
                       src={`${API_URL}/upload/profile/${item.image}`}
-                      alt=""
+                      alt="syathibyInfo"
                     />
 
                     <div className="mt-4 text-center">
