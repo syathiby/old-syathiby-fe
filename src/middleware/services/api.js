@@ -55,7 +55,11 @@ export const post = (endpoint, formdata) => {
 export const put = (endpoint, data) => {
   const url = `/${endpoint}`;
 
-  return axiosInstance().put(url, data)
+  return axiosInstance().put(url, data, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
     .then(response => response.data)
     .catch(error => {
       throw new Error("PUT request failed: " + error.message);

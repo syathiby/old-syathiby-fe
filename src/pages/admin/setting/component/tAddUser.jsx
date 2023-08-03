@@ -38,7 +38,8 @@ const TableAddUser = () => {
       const fetchData = async () => {
         try {
             const response = await get('v1/admin/users');
-            setApiData(response);
+            const filterData = response.filter(user => user.role !== "superuser")
+            setApiData(filterData);
         } catch (error) {
             console.error("Error:", error);
             setApiData([]);

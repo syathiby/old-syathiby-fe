@@ -27,6 +27,17 @@ const ArtikelLabel = () => {
       const handleClick = (name, link) => {
         navigate(`/artikel/${name}/${link}`);
       };
+
+      const truncateDescription = (description, maxLength) => {
+        if (!description) {
+          return '';
+        }
+        const strippedDescription = description.replace(/(<([^>]+)>)/gi, '');
+        if (strippedDescription.length > maxLength) {
+          return strippedDescription.substring(0, maxLength) + '...';
+        }
+        return strippedDescription;
+      };
   
     return (
       <Layout>
@@ -47,9 +58,13 @@ const ArtikelLabel = () => {
                     />
 
                     <div className="flex flex-col justify-between py-6 lg:mx-6">
-                        <a onClick={() => handleClick(item.name, item.link)} className="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">
+                        <a href={item.link} onClick={() => handleClick(item.name, item.link)} className="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">
                             {item.title}
                         </a>
+
+                        <article>
+                          {truncateDescription(item.description, 120)}
+                        </article>
                         
                         <span className="text-sm text-gray-500 dark:text-gray-300">On: {moment(item.created_at).isAfter(moment().subtract(24, 'hours'))
                   ? moment(item.created_at).fromNow()

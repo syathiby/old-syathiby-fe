@@ -12,7 +12,7 @@ function Post() {
     const fetchData = async () => {
       try {
         const response = await get('v1/post');
-        setPosts(response.slice(0, 4));
+        setPosts(response.filter((item) => item.status_publish === "active").slice(0, 4));
       } catch (error) {
         console.error('Error Fetching Data', error);
       }

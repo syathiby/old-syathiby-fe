@@ -6,8 +6,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 function Testimonial() {
   const [testi, setTesti] = useState([]);
 
-  console.log(testi);
-
   useEffect(() => {
     const fetchData = async () => {
       try {

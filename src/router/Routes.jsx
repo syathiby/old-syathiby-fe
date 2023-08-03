@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Pages Blog
 import DashboardLayout from "../pages/blog/Dashboard";
-import ArtikelAll from "../pages/blog/Artikel";
+import ArtikelAll from "../pages/blog/artikel";
 import ArtikelLabel from "../pages/blog/Label";
 import DetailPost from "../pages/blog/Detail";
 

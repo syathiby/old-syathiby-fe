@@ -31,7 +31,7 @@ const Sidebar = ({ isOpen }) => {
   };
 
   const renderMenuItem = (item) => {
-    const itemRole = item.role || []; // Perform null-check for item.role
+    const itemRole = item.role || [];
 
     if (itemRole.includes("all") || itemRole.includes(currentUserRole)) {
       if (item.children) {
@@ -63,7 +63,7 @@ const Sidebar = ({ isOpen }) => {
                         className={`flex items-center p-2 text-gray-900 my-2 rounded-lg dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 group ${
                           location.pathname === child.path ? 'bg-blue-200 dark:bg-gray-700' : ''
                         }`}
-                        activeClassName="bg-blue-200 dark:bg-gray-700"
+                        activeclassname="bg-blue-200 dark:bg-gray-700"
                       >
                         {child.icon}
                         <span className="ml-4">{child.name}</span>
@@ -83,7 +83,7 @@ const Sidebar = ({ isOpen }) => {
               className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-blue-100 dark:hover:bg-gray-700 group ${
                 location.pathname === item.path ? 'bg-blue-200 dark:bg-gray-700' : ''
               }`}
-              activeClassName="bg-blue-200 dark:bg-gray-700"
+              activeclassname="bg-blue-200 dark:bg-gray-700"
             >
               {item.icon}
               <span className="ml-3">{item.name}</span>

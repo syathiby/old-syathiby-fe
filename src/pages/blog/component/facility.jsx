@@ -50,7 +50,7 @@ function Facility() {
         >
           <div className="absolute top-0 right-0">
             <button onClick={handleCloseModal} className="bg-red-500 my-2 px-4 py-2 text-white rounded-full">
-              Close button
+              X
             </button>
           </div>
           <iframe

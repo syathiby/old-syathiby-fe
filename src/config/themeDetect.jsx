@@ -4,7 +4,7 @@ const ThemeDetector = () => {
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const updateTheme = (event) => {
-      console.log('Theme:', event.matches ? 'dark' : 'light');
+      null
     };
 
     updateTheme(mediaQuery); // Initial check

@@ -3,6 +3,9 @@ import CardDotted from "../../../component/card/cardDotted";
 import LayoutAdmin from "../../../layout/adminLayout/layout";
 import { API_URL, get, post } from "../../../middleware/services/api";
 import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
+import { getRole } from "../../../middleware/auth/authApi";
+
+import imageNull from '../../../assets/default-img.png'
 
 const Artikel = () => {
   const [postData, setPostData] = useState([]);
@@ -19,6 +22,8 @@ const Artikel = () => {
     fetchData();
   }, []);
 
+  console.log(postData)
+
   const truncateDescription = (description, maxLength) => {
     const strippedDescription = description.replace(/(<([^>]+)>)/gi, '');
     if (strippedDescription.length > maxLength) {
@@ -26,6 +31,12 @@ const Artikel = () => {
     }
     return strippedDescription;
   };
+
+  const handleImageError = (e) => {
+    e.target.src = imageNull;
+  };
+
+  const userRole = getRole()
 
   return (
     <LayoutAdmin>
@@ -74,7 +85,7 @@ const Artikel = () => {
                                     Description
                                 </th>
                                 <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                                    Link
+                                    Status
                                 </th>
                                 <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                                     Label
@@ -107,13 +118,17 @@ const Artikel = () => {
                                     {truncateDescription(item.description, 20)}
                                     </td>
                                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                                    {item.link}
+                                        {item.status_publish === null
+                                            ? "Not Publish"
+                                            : item.status_publish === "active"
+                                            ? "Publish"
+                                            : "Not Publish"}
                                     </td>
                                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                                     {item.name}
                                     </td>
                                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                                    <img src={`${API_URL}/upload/post/${item.img}`} alt="" className="h-20 w-20 rounded-md" />
+                                    <img src={`${API_URL}/upload/post/${item.img}`} alt={item.link} onError={handleImageError} className="h-20 w-20 rounded-md" />
                                     </td>
                                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                                     {item.created_by}
@@ -122,14 +137,14 @@ const Artikel = () => {
                                     {item.created_at}
                                     </td>
                                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                                        <div className="grid grid-cols-3 gap-4">
-                                            <a href={`/post/${item.link}`}>
+                                        <div className={userRole === "writer" ? "" : "grid grid-cols-3 gap-4"}>
+                                            <a href={`/artikel/${item.name}/${item.link}`}>
                                                 <EyeOutlined style={{ fontSize: '16px' }} />
                                             </a>
-                                            <a href="#">
+                                            <a href={`/admin/artikel/edit/${item.posts_id}/${item.link}`} className={userRole === "writer" ? "hidden" : ""}>
                                                 <EditOutlined style={{ fontSize: '16px' }} />
                                             </a>
-                                            <a href="#">
+                                            <a href="#" className={userRole === "writer" ? "hidden" : ""}>
                                                 <DeleteOutlined style={{ fontSize: '16px' }} />
                                             </a>
                                         </div>

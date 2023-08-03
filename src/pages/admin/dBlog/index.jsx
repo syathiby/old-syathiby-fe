@@ -28,13 +28,13 @@ const DBlog = () => {
         const latestPostResponse = await get("v1/admin/post", { sort: "-created_at", limit: 1 });
 
         setData({
-          post: latestPostResponse.length > 0 ? latestPostResponse[0] : null,
+          post: latestPostResponse.filter((item) => item.status_publish === "active").length > 0 ? latestPostResponse[0] : null,
           totalPost: totalCountResponse.length,
           totalBanner: totalCountBannerResponse.length,
           totalFoto: totalCountGaleriResponse.filter((item) => item.type === "photo").length,
           totalVideo: totalCountGaleriResponse.filter((item) => item.type === "video").length,
           banner: totalCountBannerResponse.slice(0, 2),
-          posts: totalCountResponse.slice(0, 2),
+          posts: totalCountResponse.filter((item) => item.status_publish === "active").slice(0, 2),
           galeri: totalCountGaleriResponse.filter((item) => item.type === "photo").slice(0, 6),
         });
       } catch (error) {
@@ -125,7 +125,7 @@ const DBlog = () => {
                 </div>
                 <div className="hidden sm:block sm:basis-56">
                   <img
-                    alt="Guitar"
+                    alt={data.post.link}
                     src={`${API_URL}/upload/post/${data.post.img}`}
                     className="aspect-square h-full w-full object-cover"
                   />

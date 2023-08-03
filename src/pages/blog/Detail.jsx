@@ -70,9 +70,9 @@ const DetailPost = () => {
             alt={post.title}
             loading="lazy"
           />
-          <div onClick={() => handleKategori(post.name)} className={`absolute top-2 right-2 ${post.color} px-2 py-1 rounded-tr-md rounded-bl-md`}>
+          <button onClick={() => handleKategori(post.name)} className={`absolute top-2 right-2 ${post.color} px-2 py-1 rounded-tr-md rounded-bl-md`}>
             <p className="text-black font-bold text-xs">{post.name}</p>
-          </div>
+          </button>
           <h1 className="text-3xl font-bold mt-6">{post.title}</h1>
           <p className="text-gray-600 mt-2">
             Published on {moment(post.created_at).format('DD MMMM YY')}.

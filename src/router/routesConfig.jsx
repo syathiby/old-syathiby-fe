@@ -14,6 +14,7 @@ import DBlog from "../pages/admin/dBlog";
 // Artikel
 import Artikel from "../pages/admin/post/artikel";
 import AddPost from "../pages/admin/post/postArtikel";
+import EditArtikel from "../pages/admin/post/editArtikel";
 import Kategori from "../pages/admin/label";
 
 // Fasilitas Pages
@@ -78,7 +79,14 @@ export const routes = [
             name: "Add Artikel",
             path: "/admin/artikel/add",
             component: <AddPost />,
+            role: ["writer", "admin"]
           },
+          {
+            name: "lalala",
+            path: '/admin/artikel/edit/:id/:link',
+            component: <EditArtikel />,
+            role: ["superuser", "admin"]
+          }
         ],
       }
     ],
@@ -104,12 +112,14 @@ export const routes = [
           {
             name: "Add Foto",
             path: "/admin/galeri/foto/add",
-            component: <AddFoto />
+            component: <AddFoto />,
+            role: ["superuser", "admin"]
           },
           {
             name: "Add Banner",
             path: "/admin/banner/add",
-            component: <AddBanner />
+            component: <AddBanner />,
+            role: ["superuser", "admin"]
           }
         ]
       },
@@ -123,7 +133,8 @@ export const routes = [
           {
             name: "Add Foto",
             path: "/admin/galeri/video/add",
-            component: <AddVideo />
+            component: <AddVideo />,
+            role: ["superuser", "admin"],
           }
         ]
       },
@@ -149,7 +160,7 @@ export const routes = [
       },
       {
         name: "Setting App",
-        path: "setting/app",
+        path: "/admin/setting/app",
         role: ["admin"]
       },
     ],
