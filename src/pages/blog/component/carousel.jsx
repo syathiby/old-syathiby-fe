@@ -91,7 +91,7 @@ const CarouselComponent = () => {
           {banner.map((bannerData) => (
             <Link key={bannerData.link} to={bannerData.link}>
               {/* Use Link component from React Router */}
-              <div key={bannerData.id}>
+              <div className='mx-1' key={bannerData.id}>
                 <img
                   key={bannerData.id}
                   className="object-cover w-full h-full max-w-2xl rounded-md"

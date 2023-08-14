@@ -13,33 +13,33 @@ import VisiMisi from "./component/visiMisi";
 import ReactModal from "react-modal";
 
 function DashboardLayout() {
+
   ReactModal.setAppElement("#root");
+  
   return (
-    <>
-      <Layout>
-        <div key="carousel">
-          <CarouselComponent />
-        </div>
-        <div key="visiMisi">
-          <VisiMisi />
-        </div>
-        <div key="facility">
-          <Facility />
-        </div>
-        <div key="gallery">
-          <Galery />
-        </div>
-        <div key="testimonial">
-          <Testimonial />
-        </div>
-        <div key="blogPost">
-          <Post />
-        </div>
-        <div key="address">
-          <Address />
-        </div>
-      </Layout>
-    </>
+    <Layout>
+      <div key="carousel">
+        <CarouselComponent />
+      </div>
+      <div key="visiMisi">
+        <VisiMisi />
+      </div>
+      <div key="facility">
+        <Facility />
+      </div>
+      <div key="gallery">
+        <Galery />
+      </div>
+      <div key="testimonial">
+        <Testimonial />
+      </div>
+      <div key="blogPost">
+        <Post />
+      </div>
+      <div key="address">
+        <Address />
+      </div>
+    </Layout>
   );
 }
 

@@ -128,7 +128,7 @@ const Artikel = () => {
                                     {item.name}
                                     </td>
                                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                                    <img src={`${API_URL}/upload/post/${item.img}`} alt={item.link} onError={handleImageError} className="h-20 w-20 rounded-md" />
+                                    <img src={`${API_URL}/upload/post/${item.img}`} alt={item.link} onError={handleImageError} className="h-20 w-20 object-cover rounded-md" />
                                     </td>
                                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                                     {item.created_by}

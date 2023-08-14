@@ -15,7 +15,7 @@ const ArtikelLabel = () => {
         const fetchData = async () => {
           try {
             const response = await get(`v1/post/label/${name}`);
-            setData(response);
+            setData(response.filter((item) => item.status_publish === "active"));
           } catch (error) {
             console.error("Error Fetching Data", error);
           }

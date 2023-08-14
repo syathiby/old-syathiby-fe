@@ -48,7 +48,7 @@ function Post() {
             <a href='#' onClick={handleAll} htmlFor="">Jelajahi Artikel Ma'had AL-Imam Asy-Syathiby...</a>
           </div>
           <div>
-            <button onClick={handleAll} className='bg-green-400 font-semibold text-white px-4 py-2 hover:text-black hover:bg-green-500 rounded-lg shadow-md'>Lihat Semua Artikel</button>
+            <button onClick={handleAll} className='bg-green-600 font-semibold text-white px-4 py-2 hover:text-black hover:bg-green-500 rounded-lg shadow-md'>Lihat Semua Artikel</button>
           </div>
         </div>
         <div className="flex justify-start mx-auto mt-2">

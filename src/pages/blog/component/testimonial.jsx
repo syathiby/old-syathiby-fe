@@ -36,10 +36,9 @@ function Testimonial() {
         <div className="flex items-center justify-center mt-16">
           <div className="w-ull">
             <Carousel
-              autoPlay
+              // autoPlay
               infiniteLoop
               interval={5000}
-              transitionTime={2000}
               showStatus={false}
               showIndicators={false}
               renderArrowPrev={(onClickHandler, hasPrev, label) =>

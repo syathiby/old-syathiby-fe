@@ -6,6 +6,8 @@ import { API_URL, get } from "../../../middleware/services/api";
 import LayoutAdmin from "../../../layout/adminLayout/layout"
 import CardDotted from "../../../component/card/cardDotted";
 
+import imageNull from "../../../assets/default-img.png"
+
 const DBlog = () => {
 
   const [data, setData] = useState({
@@ -57,6 +59,10 @@ const DBlog = () => {
     const date = new Date(dateString);
     const options = { year: 'numeric', month: 'long' };
     return new Intl.DateTimeFormat('en-US', options).format(date);
+  };
+
+  const handleImageError = (e) => {
+    e.target.src = imageNull;
   };
 
   return (
@@ -128,6 +134,7 @@ const DBlog = () => {
                     alt={data.post.link}
                     src={`${API_URL}/upload/post/${data.post.img}`}
                     className="aspect-square h-full w-full object-cover"
+                    onError={handleImageError}
                   />
                 </div>
                 <div className="flex flex-1 flex-col justify-between">
@@ -142,7 +149,7 @@ const DBlog = () => {
                     </p>
                   </div>
                   <div className="sm:flex sm:items-end sm:justify-end">
-                    <Link className="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400" to={`/post/${data.post.link}`}>
+                    <Link className="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400" to={`/artikel/${data.post.name}/${data.post.link}`}>
                       Read Blog
                     </Link>
                   </div>

@@ -15,6 +15,8 @@ const ArtikelAll = () => {
 
     const navigate = useNavigate()
 
+    console.log(apiData.singlePost)
+
     const handleClick = (name, link) => {
         navigate(`/artikel/${name}/${link}`);
       };
@@ -29,8 +31,8 @@ const ArtikelAll = () => {
             const response = await get('v1/post');
             const responseLabel = await get('v1/label');
             setApiData({
-                singlePost: response.length > 0 ? response[0] : null,
-                allPost: response.slice(1, 4),
+                singlePost: response.filter((item) => item.status_publish === "active").length > 0 ? response[0] : null,
+                allPost: response.slice(1, 4).filter((item) => item.status_publish === "active"),
                 kategori: responseLabel,
             });
           } catch (error) {
